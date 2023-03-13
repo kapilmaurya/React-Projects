@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 // import App from './App';
 import Home from './pages/Home';
+import Search from './pages/Search';
 import Layout from './Components/Layout';
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -11,11 +12,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/search",
+    element: <Search />,
   }
-  // {
-  //   path: "/search",
-  //   element: <Search />,
-  // },
   // {
   //   path: "/watch",
   //   element: <Watch />,

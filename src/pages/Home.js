@@ -1,9 +1,6 @@
-// import logo from '..Assets/logo.png';
-// import './App.css';
-// import Header from './Components/Header'
 import Card from '../Components/Card';
 import Layout from '../Components/Layout';
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { API_KEY, BASE_URL } from '../utility/constent';
 
 export default class Home extends Component {
@@ -37,14 +34,13 @@ export default class Home extends Component {
     }
 
     render() {
+        const { videos } = this.state;
         return (
             <Layout>
-
-                <h1>Aa Jao Na Plz Abhi Nasta Bhi nhi kiya</h1>
                 <div>
                     {/* <Header /> */}
                     <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 px-2">
-                        {this.state.videos.map((videos, index) => (
+                        {videos && videos.map((videos, index) => (
                             <Card key={videos.id} {...videos} />
                         ))}
                     </div>
