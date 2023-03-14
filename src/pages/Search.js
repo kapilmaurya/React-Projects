@@ -29,7 +29,7 @@ export default class Search extends Component {
 
     fetchMyApi = async () => {
         try {
-            const res = await fetch(`${BASE_URL}search?part=snippet&part=statistics&channelType=any&q=learn%20with%20hkr&key=${API_KEY}`)
+            const res = await fetch(`${BASE_URL}search?part=snippet&channelType=any&q=learn%20with%20hkr&key=${API_KEY}`)
             return await res.json()
         }
         catch (error) {
@@ -38,25 +38,25 @@ export default class Search extends Component {
     }
 
     render() {
-
+        const {Search}=this.state
         return (
             <Layout>
                 <div className="ml-auto mr-auto grid gap-y-8">
-                    {this.state.Search.map((search, index) => {
-                        const { id, snippet, statistics} = search;
+                    {Search && Search.map((search, index) => {
+                        const { id, snippet} = search;
                         const { kind, videoId } = id;
                         const { publishedAt, title, channelId, thumbnails, channelTitle, description } = snippet;
-                        const {viewCount}=statistics
+                        // const {viewCount}=statistics
                         const date=publishedAt
                         switch (kind) {
                             case 'youtube#channel':
                                 return (
-                                    <div className="flex flex-row gap-x-4 items-center">
-                                        <div className="rounded-xl overflow-hidden h-52 w-72">
+                                    <div className="flex flex-row gap-x-14 items-center">
+                                        <div className="rounded-xl overflow-hidden h-52 w-72 flex justify-center">
                                             {/* thumbnail */}
                                             <img src={thumbnails.high.url} alt="thumbnail" className="rounded-full h-44 w-44" />
                                         </div>
-                                        <div className="flex gap-x-4 w-85">
+                                        <div className="flex gap-x-4 w-70">
                                             <div>
                                                 <h5 className='font-sans text-lg'>{title}</h5>
                                                 <h5 className='font-sans text-sm'>@{channelTitle}</h5>
@@ -81,16 +81,16 @@ export default class Search extends Component {
                                 break;
                             default:
                                 return (
-                                    <div className="flex flex-row gap-x-4 items-center">
+                                    <div className="flex flex-row gap-x-14 items-center">
                                         <div className="rounded-xl overflow-hidden h-52 w-72">
                                             {/* thumbnail */}
-                                            <img src={thumbnails.high.url} alt="thumbnail" className="" />
+                                            <img src={thumbnails.high.url} alt="thumbnail"  />
                                         </div>
-                                        <div className="flex gap-x-4 w-85">
+                                        <div className="flex gap-x-4 w-70">
                                             <div>
                                                 <h5 className='font-sans text-lg'>{title}</h5>
                                                 <div className='flex  items-center'>
-                                                    <span>{abbreviateNumber(viewCount)}</span>
+                                                    {/* <span>{abbreviateNumber(viewCount)}</span> */}
                                                     <span><BsDot /></span>
                                                     <span>{timeDifferenceForDate(date)}</span>
                                                 </div>
